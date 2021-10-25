@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.17)  10 OCT 2021 17:28
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.22)  24 OCT 2021 18:51
+>>>>>>> Stashed changes
 entering extended mode
 **./conference_101719.tex
 (conference_101719.tex
@@ -333,10 +337,17 @@ Before submitting the final camera ready copy, remember to:
 ]
 (conference_101719.aux) ) 
 Here is how much of TeX's memory you used:
+<<<<<<< Updated upstream
  3829 strings out of 481563
  56123 string characters out of 2914140
  300355 words of memory out of 3000000
  19047 multiletter control sequences out of 15000+200000
+=======
+ 3826 strings out of 480790
+ 54521 string characters out of 2907055
+ 303124 words of memory out of 3000000
+ 19816 multiletter control sequences out of 15000+200000
+>>>>>>> Stashed changes
  567037 words of font info for 89 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  30i,11n,37p,465b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
