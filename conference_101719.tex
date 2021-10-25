@@ -86,24 +86,28 @@
 	
 	
 	\section{Related Work}
-	\section{Methodology}
+	\section{Text Classification Process}
 	The study was divided into three sections as shown in Figure 1 and was carried out using a quantitative research method.The first step was preprocessing, which included cleaning and converting text to numerical values.The second step is the primary contribution of our research, which is the use of various balancing methods to obtain appropriate datasets.Finally, we used a deep learning algorithm to create models for each balancing approach and compare the results. 
 	
 	
 	\begin{figure}[htbp]
-		\centerline{\includegraphics[scale=0.70]{../../../../../../../../umbalanced_paper/umb_class2021/images/model}}
+		\centerline{\includegraphics[scale=0.70]{images/model}}
 		\caption{Methodology.}
 		\label{fig}
 	\end{figure}
 	
-	\subsubsection{Preprocessing}
+	\paragraph{Preprocessing}
 	Because of the nature of writing on social media platforms, preprocessing is a critical operation. Its goal is to remove noise and words that are not properly written with alphabetical characters, as well as symbols such as Hashtags and URLs, among others. In this step, the use of Natural Language Processing is absolutely necessary. \\
 	A vector representation is required to use Machine Learning algorithms, including deep learning in order to perform certain mathematical operations.  In the literature, a variety of strategies were utilized to attain this purpose, including:
 	Bag of Words (BoW), Term Frequency-Inverse Document Frequency (Tf-IDF), and complicated representations that use semantics and context-named Word Embeddings like FastText, GloVe, and Word2Vec...
 	
-	\subsubsection{Balancing}
+
+	\section{Balancing Approaches}
+
 	In unbalanced datasets, certain classes have far more instances than others. Especially on social media platforms where neutral phrases predominate. As a result, deep learning model creation does not provide good accuracy.  There are three types of techniques that can be used to address this issue: Oversapling, Undersampling and Hybrid approach.\\
-	
+	\subsection{Oversampling}
+	\subsection{Undersampling}
+	\subsection{hybrid methods}	
 	The Oversampling is the process of increasing the number of samples from the minority class until a desired balancing ratio R reached which is  caculed with the Equation 1, while $X_{minority}$ is the minority class and $X_{majority}$ is the majority.
 	\begin{equation}
 	R(X)= \frac{X_{minority}}{X_{majority}}
@@ -125,9 +129,10 @@
 	The hybrid method combines the benefits of undersampling and oversampling, allowing us to amplify the minority class while removing any noisy observations. 
 	
 	
-	\subsection{Results and Discussion:}\label{AA}
+
 	
-	
+
+	\section{Results and Discussion:}\label{AA}
 	\section{Conclusion}
 	
 	\bibliographystyle{IEEEtran}
