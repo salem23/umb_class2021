@@ -86,25 +86,35 @@
 	
 	
 	\section{Related Work}
-	\section{Methodology}
+	\section{Base Line text classification}
 	The study was divided into three sections as shown in Figure 1 and was carried out using a quantitative research method.The first step was preprocessing, which included cleaning and converting text to numerical values.The second step is the primary contribution of our research, which is the use of various balancing methods to obtain appropriate datasets.Finally, we used a deep learning algorithm to create models for each balancing approach and compare the results. 
 	
 	
 	\begin{figure}[htbp]
-		\centerline{\includegraphics[scale=0.70]{../../../../../../../../umbalanced_paper/umb_class2021/images/model}}
+		\centerline{\includegraphics[scale=0.70]{../../../../../../../../umbalanced_paper/umb_class2021/images/baseline}}
 		\caption{Methodology.}
 		\label{fig}
 	\end{figure}
 	
 	\subsubsection{Preprocessing}
 	Because of the nature of writing on social media platforms, preprocessing is a critical operation. Its goal is to remove noise and words that are not properly written with alphabetical characters, as well as symbols such as Hashtags and URLs, among others. In this step, the use of Natural Language Processing is absolutely necessary. \\
+	\subsubsection{Vector Representation}
 	A vector representation is required to use Machine Learning algorithms, including deep learning in order to perform certain mathematical operations.  In the literature, a variety of strategies were utilized to attain this purpose, including:
 	Bag of Words (BoW), Term Frequency-Inverse Document Frequency (Tf-IDF), and complicated representations that use semantics and context-named Word Embeddings like FastText, GloVe, and Word2Vec...
-	
-	\subsubsection{Balancing}
+	\subsubsection{Deep Learning}	
+Traditional machine learning models, such as support vector machine (SVM), logistic regression (LR), and so forth, require explicit features to be created, making it difficult to select the most important words that predominate the sentences or text. As a result, the accuracy of models varies between datsets. To solve this problem Deep learning approaches are required  because they apply automatic techniques to select features. Many approches are used in text classification, among them LSTM , BILSTM, GRU, CNN, and which gives an important accuracy in balanced datasets. However, in imbalanced datasets, all approaches produce low accuracy due to the overfitting problem caused by text features. This prompted us to include a module called Balancing in the baseline algorithm to address the issue as shown in Figure 2. 
+
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale=0.70]{../../../../../../../../umbalanced_paper/umb_class2021/images/balancing}}
+	\caption{The new Baseline.}
+	\label{fig}
+\end{figure}
+
+	\section{Balancing}
 	In unbalanced datasets, certain classes have far more instances than others. Especially on social media platforms where neutral phrases predominate. As a result, deep learning model creation does not provide good accuracy.  There are three types of techniques that can be used to address this issue: Oversapling, Undersampling and Hybrid approach.\\
-	
-	The Oversampling is the process of increasing the number of samples from the minority class until a desired balancing ratio R reached which is  caculed with the Equation 1, while $X_{minority}$ is the minority class and $X_{majority}$ is the majority.
+	\subsubsection{Undersampling}
+	The undersampling is the process of increasing the number of samples from the minority class until a desired balancing ratio R reached which is  caculed with the Equation 1, while $X_{minority}$ is the minority class and $X_{majority}$ is the majority.
 	\begin{equation}
 	R(X)= \frac{X_{minority}}{X_{majority}}
 	\end{equation}
@@ -115,13 +125,14 @@
 	The second technique, known as Synthetic Minority Over-Sampling Technique (SMOTE), generates samples through interpolation, which generates new data points within the range of known data points.
 	The minority class is oversampled by creating synthetic samples rather than extracting data at random, which avoid duplication.\\
 	
-	The ovesampling method\textquotesingle s aim is to reduce the number of samples from the majority class. This approach have two principles Random, and Boundary.\\
+	\subsubsection{Oversampling}
+	The oversampling method\textquotesingle s aim is to reduce the number of samples from the majority class. This approach have two principles Random, and Boundary.\\
 	
 	The first is a naive technique based on randomly removing samples until a desired ration R is reached. If R equals one, the class is perfectly balanced. The disadvantage of this method is that we can omit important details that can aid in the creation of a good model.\\
 	
 	The second technique extract samples at the boundary of two or more classes. it use an algorithm named Condensed Nearest Neighbours (CNN). The algorithm tends to select points near the boundary between the classes and transfer them to the new group. 
 	
-	
+	\subsubsection{Hybrid Method}	
 	The hybrid method combines the benefits of undersampling and oversampling, allowing us to amplify the minority class while removing any noisy observations. 
 	
 	
