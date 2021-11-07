@@ -7,13 +7,17 @@
 \usepackage{graphicx}
 \newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
+\usepackage{makecell}
+
+
+
 \usepackage{textcomp}
 \usepackage{xcolor}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 	
-	\title{Unbalanced Datasets in Text Classification: Impact and Solutions  \\
+	\title{Imbalanced Datasets in Text Classification: Impact and Solutions  \\
 		%{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
 	}
 	%\thanks{Identify applicable funding agency here. If none, delete this.}
@@ -86,29 +90,35 @@
 	
 	
 	\section{Related Work}
-	\section{Text Classification Process}
+	\section{Deep learning for Sentiment Analysis}
 	The study was divided into three sections as shown in Figure 1 and was carried out using a quantitative research method.The first step was preprocessing, which included cleaning and converting text to numerical values.The second step is the primary contribution of our research, which is the use of various balancing methods to obtain appropriate datasets.Finally, we used a deep learning algorithm to create models for each balancing approach and compare the results. 
 	
 	
 	\begin{figure}[htbp]
-		\centerline{\includegraphics[scale=0.70]{images/model}}
+		\centerline{\includegraphics[scale=0.50]{images/baseline}}
 		\caption{Methodology.}
 		\label{fig}
 	\end{figure}
 	
-	\paragraph{Preprocessing}
+	\subsubsection{Preprocessing}
 	Because of the nature of writing on social media platforms, preprocessing is a critical operation. Its goal is to remove noise and words that are not properly written with alphabetical characters, as well as symbols such as Hashtags and URLs, among others. In this step, the use of Natural Language Processing is absolutely necessary. \\
+	\subsubsection{Vector Representation}
 	A vector representation is required to use Machine Learning algorithms, including deep learning in order to perform certain mathematical operations.  In the literature, a variety of strategies were utilized to attain this purpose, including:
-	Bag of Words (BoW), Term Frequency-Inverse Document Frequency (Tf-IDF), and complicated representations that use semantics and context-named Word Embeddings like FastText, GloVe, and Word2Vec...
-	
+	Bag of Words (BoW), Term Frequency-Inverse Document Frequency (Tf-IDF), and complicated representations that use semantics and context-named Word Embeddings like FastText, GloVe, and Word2Vec...\\
+	\subsubsection{Deep Learning}	
+Traditional machine learning models, such as support vector machine (SVM), logistic regression (LR), and so forth, require explicit features to be created, making it difficult to select the most important words that predominate the sentences or text. As a result, the accuracy of models varies between datsets. To solve this problem Deep learning approaches are required  because they apply automatic techniques to select features. Many approches are used in text classification, among them LSTM , BILSTM, GRU, CNN, and which gives an important accuracy in balanced datasets. However, in imbalanced datasets, all approaches produce low accuracy due to the overfitting problem caused by text features. This prompted us to include a module called Balancing in the baseline algorithm to address the issue as shown in Figure 2. 
+
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale=0.70]{images/balancing}}
+	\caption{The new Baseline.}
+	\label{fig}
+\end{figure}
 
 	\section{Balancing Approaches}
-
 	In unbalanced datasets, certain classes have far more instances than others. Especially on social media platforms where neutral phrases predominate. As a result, deep learning model creation does not provide good accuracy.  There are three types of techniques that can be used to address this issue: Oversapling, Undersampling and Hybrid approach.\\
-	\subsection{Oversampling}
-	\subsection{Undersampling}
-	\subsection{hybrid methods}	
-	The Oversampling is the process of increasing the number of samples from the minority class until a desired balancing ratio R reached which is  caculed with the Equation 1, while $X_{minority}$ is the minority class and $X_{majority}$ is the majority.
+	\subsubsection{Undersampling}
+	The undersampling is the process of increasing the number of samples from the minority class until a desired balancing ratio R reached which is  caculed with the Equation 1, while $X_{minority}$ is the minority class and $X_{majority}$ is the majority.
 	\begin{equation}
 	R(X)= \frac{X_{minority}}{X_{majority}}
 	\end{equation}
@@ -119,21 +129,160 @@
 	The second technique, known as Synthetic Minority Over-Sampling Technique (SMOTE), generates samples through interpolation, which generates new data points within the range of known data points.
 	The minority class is oversampled by creating synthetic samples rather than extracting data at random, which avoid duplication.\\
 	
-	The ovesampling method\textquotesingle s aim is to reduce the number of samples from the majority class. This approach have two principles Random, and Boundary.\\
+	\subsubsection{Oversampling}
+	The oversampling method\textquotesingle s aim is to reduce the number of samples from the majority class. This approach have two principles Random, and Boundary.\\
 	
 	The first is a naive technique based on randomly removing samples until a desired ration R is reached. If R equals one, the class is perfectly balanced. The disadvantage of this method is that we can omit important details that can aid in the creation of a good model.\\
 	
 	The second technique extract samples at the boundary of two or more classes. it use an algorithm named Condensed Nearest Neighbours (CNN). The algorithm tends to select points near the boundary between the classes and transfer them to the new group. 
 	
-	
+	\subsubsection{Hybrid Method}	
 	The hybrid method combines the benefits of undersampling and oversampling, allowing us to amplify the minority class while removing any noisy observations. 
 	
-	
+	\section{Experiments}
+	\subsection{Experiment Processes}
+In this section, we describe the experiments that were conducted and the results that were obtained regarding the accuracy of our models without and with balancing techniques.
+Python is used to implement all of the codes.
+We used an imbalanced dataset known as ASAD (Twitter-based Benchmark Arabic Sentiment Analysis Dataset) in the experiments, which was released for a sentiment analysis challenge sponsored by KAUST.
+The dataset contains 55000 tweets that have been manually labeled as negative, positive, or neutral, with numeric values of 8820, 8821, and 37359 tweets, respectively. We divided the ASAD dataset into two subsets. The first contains 80 percent of the data for training, while the second contains the remaining 20 percent for testing.\\
+ 
+All experiments go through the same preprocessing step, which includes cleaning the text of noise, hashtags, URLs, and other symbols such as imogis and non-alphabetical characters. 
+We used fine-tunning BERT, Google's most popular language representation model, for tweet embedding vectors and classifications. 
+Experimental results were evaluated using two principle metrics: AVG-Recall and F1-PN.\\
+
+The four experiments are described in detail in the following subsections.
+The first uses fine-tunning BERT directly on the imbalanced dataset, while the others use balancing techniques such as oversampling, undersampling, and hybridization.   \\
+
+\subsection{Experiment Results}
+The experimental results are shown in Tables 1,2,3, and 4, and they display that the imbalaced dataset (ASAD) fed to BERT has a low classification accuracy with an AVG-Recall of 0.6 and an F1-PN of 0.54 when compared to the other experiments. Furthermore, as demonstrated, each balancing technique performs differently. As we can see, hybridization outperforms the other two strategies. In addition, we discovered that the outcomes of each balancing method differed. In terms of oversampling, SMOTE outperforms the random method, while boundary removing outperforms the random method. Figure 3 illustrates the comparison. 
+
+\begin{table}[!ht]
+	\large        %% not "\fontsize{12}{12}\selectfont"
+	\caption{Without Balancing .}\label{label}
+	\centering    %% not "\center{...}"
+	\begin{tabular}{|c|c|}
+		\hline
+		&\thead{Imbalanced \\ Dataset}\\     %% no "&" at start of row
+		\hline
+		F1-Positive&0.54\\
+		\hline
+		F1-Negative&0.55\\
+		\hline
+		F1-Neutral&0.85\\
+		\hline
+		Macro-F1&0.65\\
+		
+		\hline
+		Positive-Recall&0.46\\
+		\hline
+		Negative-Recall&0.45\\
+		\hline
+		Neutral-Recall&0.89\\
+		\hline
+		AVG-Recall&\textbf{0.6}\\
+		\hline
+		F1-PN&\textbf{0.54}\\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[!ht]
+	\large        %% not "\fontsize{12}{12}\selectfont"
+	\caption{Oversampling Balancing .}\label{label}
+	\centering    %% not "\center{...}"
+	\begin{tabular}{|c|c|c|}
+		\hline
+		&Random&SMOTE\\     %% no "&" at start of row
+		\hline
+		F1-Positive&0.66 &0.68\\
+		\hline
+		F1-Negative&0.66&0.69\\
+		\hline
+		F1-Neutral&0.87&0.89\\
+		\hline
+		Macro-F1&0.73&0.75\\
+		\hline
+		Positive-Recall&0.63&0.67\\
+		\hline
+		Negative-Recall&0.64&0.68\\
+		\hline
+		Neutral-Recall&0.88&0.89\\
+		\hline
+		AVG-Recall&\textbf{0.71}&\textbf{0.75}\\
+		\hline
+		F1-PN&\textbf{0.65}&\textbf{0.68}\\
+	\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+	\large        %% not "\fontsize{12}{12}\selectfont"
+	\caption{Undersampling Balancing .}\label{label}
+	\centering    %% not "\center{...}"
+	\begin{tabular}{|c|c|c|}
+		\hline
+		&Random&Boundary\\     %% no "&" at start of row
+		\hline
+		F1-Positive&0.67 &0.69\\
+		\hline
+		F1-Negative&0.68&0.70\\
+		\hline
+		F1-Neutral&0.87&0.89\\
+		\hline
+		Macro-F1&0.74&0.76\\
+		\hline
+		Positive-Recall&0.0.64&0.66\\
+		\hline
+		Negative-Recall&0.63&0.68\\
+		\hline
+		Neutral-Recall&0.87&0.86\\
+		\hline
+		AVG-Recall&\textbf{0.71}&\textbf{0.73}\\
+		\hline
+		F1-PN&\textbf{0.67}&\textbf{0.69}9\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+	\large        %% not "\fontsize{12}{12}\selectfont"
+	\caption{Hybrid Balancing .}\label{label}
+	\centering    %% not "\center{...}"
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\thead{} &\thead{Random \\ and \\ Random}&\thead{SMOTE \\and\\ Boundary}\\     %% no "&" at start of row
+		\hline
+		F1-Positive&0.73 &0.75\\
+		\hline
+		F1-Negative&0.74&0.74\\
+		\hline
+		F1-Neutral&0.88&0.87\\
+		\hline
+		Macro-F1&0.78&0.78\\
+		\hline
+		Positive-Recall&0.72&0.74\\
+		\hline
+		Negative-Recall&0.0.71&0.73\\
+		\hline
+		Neutral-Recall&0.0.87&0.88\\
+		\hline
+		AVG-Recall&\textbf{0.76}&\textbf{0.78}\\
+		\hline
+		F1-PN&\textbf{0.73}&\textbf{0.73}\\
+		\hline
+	\end{tabular}
+\end{table}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[scale=0.80]{images/chart}}
+	\caption{Comparison of Balancing Techniques Results.}
+	\label{fig}
+\end{figure}
+
+\subsection{Results and Discussion:}\label{AA}
 
 	
-
-	\section{Results and Discussion:}\label{AA}
-	\section{Conclusion}
+\section{Conclusion}
 	
 	\bibliographystyle{IEEEtran}
 	
